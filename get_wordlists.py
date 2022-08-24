@@ -22,11 +22,20 @@ def count_lines(file):
             count = sum(1 for _ in f)
     return count
 
-
-a_list = raw_to_list(oldanswers, count_lines("rawwordlists/old_allowedanswers.txt"))
+a_count = count_lines("rawwordlists/old_allowedanswers.txt")
+a_list = raw_to_list(oldanswers, a_count)
 a_file = open('allowed_answers.pkl', 'wb')
 pkl.dump(a_list, a_file)
+a_file.close()
 
-g_list = raw_to_list(oldguesses, count_lines("rawwordlists/old_allowedguesses.txt"))
+g_count = count_lines("rawwordlists/old_allowedguesses.txt")
+g_list = raw_to_list(oldguesses, g_count)
 g_file = open('allowed_guesses.pkl', 'wb')
 pkl.dump(g_list, g_file)
+g_file.close()
+
+i_count = a_count + g_count
+i_list = a_list + g_list # creating a list to be able to check all inputs
+i_file = open('allowed_input.pkl', 'wb')
+pkl.dump(i_list, i_file)
+i_file.close()
