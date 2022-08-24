@@ -1,31 +1,27 @@
 # transforming raw .txts into items of a list that we can use later
 
+
 oldanswers = open("rawwordlists/old_allowedanswers.txt","r") # allowed answers/"secret words"
-allowedanswers = open("allowedanswers.json","w")
+allowedanswers = open("allowedanswers.py","w")
 
 oldguesses = open("rawwordlists/old_allowedguesses.txt","r") # allowed guesses
-allowedguesses = open ("allowedguesses.json","w")
+allowedguesses = open ("allowedguesses.py","w")
+
 
 def raw_to_list(oldfile, newfile, c, listname):
-    # crudely creating a json file
+    # crudely creating a list
     def transform_words():
         l = 6
         for i in range(c):
-            if i == c-1: # last item in json shouldn't have a comma after it; annoying
-                word = oldfile.readline(l)
-                word = "  \"" + word
-                word = word[:6] + "\"" + '\n'
-                newfile.write(word)
-                l = l + 5
-            else: # if it's not the last item then we will also add a comma at the end
-                word = oldfile.readline(l)
-                word = "  \"" + word
-                word = word[:6] + "\"" + ',\n'
-                newfile.write(word)
-                l = l + 5
-    newfile.write("{ \n \"" + listname + "\": \n [\n")
+            word = oldfile.readline(l)
+            word = "  \"" + word
+            word = word[:6] + "\"" + ',\n'
+            newfile.write(word)
+            l = l + 5
+    
+    newfile.write(listname + " = [")
     transform_words()
-    newfile.write(" ]\n}")
+    newfile.write("]")
 
 
 def count_lines(file):
@@ -36,10 +32,7 @@ def count_lines(file):
             count = sum(1 for _ in f)
     return count
 
-answers_count = count_lines("rawwordlists/old_allowedanswers.txt")
-print(answers_count)
-raw_to_list(oldanswers, allowedanswers, answers_count, "a_list") # Exception has occurred: NameError name 'count' is not defined
 
-guesses_count = count_lines("rawwordlists/old_allowedguesses.txt")
-print(guesses_count)
-raw_to_list(oldguesses, allowedguesses, guesses_count, "g_list")
+raw_to_list(oldanswers, allowedanswers, count_lines("rawwordlists/old_allowedanswers.txt"), "a_list")
+
+raw_to_list(oldguesses, allowedguesses, count_lines("rawwordlists/old_allowedguesses.txt"), "g_list")

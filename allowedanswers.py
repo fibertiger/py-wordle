@@ -1,7 +1,4 @@
-{ 
- "a_list": 
- [
-  "aba",
+a_list = [  "aba",
   "aba",
   "aba",
   "abb",
@@ -2314,6 +2311,5 @@
   "you",
   "you",
   "zeb",
-  "zes"
- ]
-}
+  "zes",
+]

@@ -1,7 +1,4 @@
-{ 
- "g_list": 
- [
-  "aah",
+g_list = [  "aah",
   "aal",
   "aar",
   "aar",
@@ -10656,6 +10653,5 @@
   "zuz",
   "zyg",
   "zyg",
-  "zym"
- ]
-}
+  "zym",
+]
