@@ -18,8 +18,8 @@ secret_list = tuple(secret_word)
 
 print("Enter your guess:")
 
-guesses = 5
-while guesses > 0: # game process
+guess_count = 5
+while guess_count > 0: # game process
     player_guess = input()
     if len(player_guess) == 5:
         if player_guess == secret_word:
@@ -28,7 +28,7 @@ while guesses > 0: # game process
             print("The word was: " + secret_word + ". You won!")
             sys.exit()
         else:
-            guesses -= 1
+            guess_count -= 1
 
             guessing_stat = ["-", "-", "-", "-", "-"] # reverting the current guess' score to default before every next guess
 
@@ -37,7 +37,7 @@ while guesses > 0: # game process
             compare(player_guess, secret_list)
 
             print(f"{guessing_stat[0]}{guessing_stat[1]}{guessing_stat[2]}{guessing_stat[3]}{guessing_stat[4]}") # ungracious way of printing the current guess' score to fit under the letters
-            print(f"{guesses} tries left")
+            print(f"{guess_count} tries left")
     else:
         print("The word should be 5 letters long!")
 
