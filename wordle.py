@@ -19,7 +19,10 @@ i_file = open('allowed_input.pkl', 'rb')
 i_list = pkl.load(i_file)
 i_file.close()
 
-secret_list = tuple(secret_word)
+secret_list = list(secret_word)
+
+# FOR DEBUGGING: 
+#print(secret_word)
 
 print("Enter your guess:")
 
@@ -40,7 +43,7 @@ while guess_count > 0: # game process
                 guessing_stat = ["-", "-", "-", "-", "-"] # reverting the current guess' score to default before every next guess
 
                 player_guess = list(player_guess) # https://stackoverflow.com/questions/113655/is-there-a-function-in-python-to-split-a-word-into-a-list
-
+                
                 compare(player_guess, secret_list)
 
                 print(f"{guessing_stat[0]}{guessing_stat[1]}{guessing_stat[2]}{guessing_stat[3]}{guessing_stat[4]}") # ungracious way of printing the current guess' score to fit under the letters
